@@ -1,11 +1,11 @@
 ; Comments
-(comment) @comment @spell
+(comment) @comment
+
+(comment
+  (body) @spell)
 
 ; General
-[
-  (string)
-  (raw_string)
-] @string
+(string) @string
 
 (int) @number
 
@@ -13,7 +13,7 @@
 
 [
   (option)
-  (variable_name)
+  (name)
 ] @variable
 
 (command_line_option) @variable.builtin
@@ -21,31 +21,29 @@
 ((option) @variable.builtin
   (#not-lua-match? @variable.builtin "^@"))
 
-(command) @keyword
+[
+  (if_keyword)
+  (elif_keyword)
+  (else_keyword)
+  (endif_keyword)
+] @keyword.conditional
+
+[
+  (hidden_keyword)
+  (command)
+] @keyword
 
 (source_file_directive
   (command) @keyword.import)
 
-(attribute) @attribute
-
-(function_name) @function.call
+(hook_name) @property
 
 "=" @operator
 
-[
-  ","
-  ":"
-] @punctuation.delimiter
+";" @punctuation.delimiter
 
 [
-  "#"
-  "?"
-] @punctuation.special
-
-[
-  "#{"
   "}"
-  "#["
   "]"
   "["
   "{"
